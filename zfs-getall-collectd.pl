@@ -17,7 +17,6 @@ my @params  = qw (
                 logicalreferenced quota available written
 );
 
-
 my ($interval,$hostname,$skip_syspool,$prefix,$help);
 my $ts = time();
 
