@@ -65,7 +65,7 @@ sub Output {
   $path =~ s#/(?=.*/)#\.#g;
   # Remove any non-numeric values
   $value =~ s/[^0-9\.]//g;
-  printf("%s.%s.%s/gauge-%s interval=%i %i:%s\n", $hostname, $prefix, $path, $param, $interval, $ts, $value);
+  printf("PUTVAL %s.%s.%s/gauge-%s interval=%i %i:%s\n", $hostname, $prefix, $path, $param, $interval, $ts, $value);
 }
 
 __END__
