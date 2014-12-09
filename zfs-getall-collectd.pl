@@ -20,6 +20,10 @@ my @params  = qw (
 my ($interval,$hostname,$skip_syspool,$prefix,$help);
 my $ts = time();
 
+if ($ENV{'COLLECTD_INTERVAL'}) {
+  $interval = $ENV{'COLLECTD_INTERVAL'};
+}
+
 Getopt::Long::GetOptions(
   'interval|i=i'  => \$interval,
   'hostname|h=s'  => \$hostname,
@@ -55,7 +59,6 @@ while (1) {
 
 
 sub Output {
-  # print "PUTVAL xxxtestingxxx.zfs.nxt002-ord-1/c3922/gauge-w_bs $DATE:4.1\n";
   my $path = shift;
   my $param = shift;
   my $value = shift;
@@ -64,7 +67,7 @@ sub Output {
   $path =~ s#/(?=.*/)#\.#g;
   # Remove any non-numeric values
   $value =~ s/[^0-9\.]//g;
-  printf("%s.%s.%s/gauge-%s %i:%s\n", $hostname, $prefix, $path, $param, $ts, $value);
+  printf("%s.%s.%s/gauge-%s interval=%i %i:%s\n", $hostname, $prefix, $path, $param, $interval, $ts, $value);
 }
 
 __END__
@@ -81,7 +84,7 @@ zfs-getall-collectd.pl [options]
     --interval    loop interval (default 5m)
     --hostname    override hostname (default Sys::Hostname)
     --prefix      collectd metric prefix (default space)
-    --nosyspool   don't report stats for syspool (default off)
+    --no-syspool   don't report stats for syspool (default off)
 
 =head1 DESCRIPTION
 
