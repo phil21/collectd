@@ -10,7 +10,7 @@ use Getopt::Long;
 my $VERSION = '1.0';
 my $AUTHOR = 'Phil Doroff <phil@servercentral.com>';
 
-my $zfs_cmd = 'zfs get -pH all';
+my $zfs_cmd = 'zfs get -pH -t filesystem,volume all';
 my @params  = qw (
                 used referenced compressratio usedbysnapshots usedbydataset
                 usedbychildren usedbyrefreservation logicalused 
