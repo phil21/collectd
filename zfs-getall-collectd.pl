@@ -40,7 +40,6 @@ $prefix ||= 'space';
 $skip_syspool ||= 0;
 $hostname ||= hostname();
 
-
 while (1) {
   my @raw = `$zfs_cmd`;
   foreach (@raw) {
