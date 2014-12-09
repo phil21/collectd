@@ -57,7 +57,6 @@ while (1) {
   sleep($interval);
 }
 
-
 sub Output {
   my $path = shift;
   my $param = shift;
