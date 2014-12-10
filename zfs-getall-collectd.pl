@@ -20,7 +20,6 @@ my @params  = qw (
 );
 
 my ($interval,$hostname,$skip_syspool,$prefix,$help);
-my $ts = time();
 
 if ($ENV{'COLLECTD_INTERVAL'}) {
   $interval = $ENV{'COLLECTD_INTERVAL'};
@@ -62,6 +61,7 @@ sub Output {
   my $path = shift;
   my $param = shift;
   my $value = shift;
+  my $ts = time();
   # Clean up some values for ingest purposes
   # Path must be converted to dots (zpool.parent.parent/child)
   $path =~ s#/(?=.*/)#\.#g;
